@@ -1,24 +1,27 @@
-Linux is an OpenSource OS , it contains a lot of different distros , each one characterised by different utilities and flexibilities . The
+# Linux notes
 
-Kernel is the core of the Operating system and it uses the important ressources ( RAM and CPU ) to link between the Hardware and Software 
+## What is Linux?
+Linux is an open-source OS. It contains many different distros (distributions), each characterized by different utilities and flexibility.
 
-Parts  .
+The kernel is the core of the operating system. It manages important resources (RAM and CPU) and links the hardware and software parts.
 
+Right now I'm using Ubuntu because it's beginner-friendly and it will facilitate my learning curve.
 
-Right now , I'm using Ubuntu since it's beginner friendly and it will faciliate the learning curve for me .
+## Paths
+There are two kinds of paths:
 
-There are two different paths :
+- **Absolute path:** starts with `/`, the root of the system. It's the complete route.
+  Example: `/home/stofita/notes`
+  
+- **Relative path:** does not start with `/`. It is read from the folder I'm in now. `./` means "the current folder" and is optional.
+  Example: from `/home`, both `cd stofita` and `cd ./stofita` do the same thing.
 
-Absolute Path : it got the / before the directory , it's like the start , the complete route .
+## Commands learned so far
 
-Relative Path : it got ./  before the directory , it's a specific route , not the complete .
-
-So far i learned these commands :
-
-echo : it works like printf in C , like it writes the thing after it .
-
-pwd  : it's Print Working Directory, it shows where we are , like the location .
-
-cd   : it changes the directory and it got some shortcuts ( cd . current directory ; cd .. parent directory ; cd ~ home directory ; cd - previous directory ) . 
-
-
+- `echo`: prints the text after it, like `printf` in C.
+- `pwd`: Print Working Directory, shows where I am (the current location).
+- `cd`: changes the directory. Shortcuts:
+  - `cd .` current directory
+  - `cd ..` parent directory
+  - `cd ~` home directory
+  - `cd -` previous directory
