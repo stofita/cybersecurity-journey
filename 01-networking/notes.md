@@ -14,3 +14,8 @@ A universal reference model with 7 layers.
 | 7 | Application  | Protocols that applications use to communicate            | HTTP, DNS, SMTP               |
 
 Memory trick: Please Do Not Throw Sausage Pizza Away
+
+PDU Names : L1 bits, L2 frames , L3 packets , L4 segments or datagrams
+
+Layer 2 device : Switch
+Layer 3 device : Router
