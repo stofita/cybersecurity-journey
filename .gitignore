@@ -214,6 +214,19 @@ tempCodeRunnerFile.py
 # Marimo
 marimo/_static/
 marimo/_lsp/
+
+# Extra protection: secrets and sensitive files
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+
+# Packet captures and dumps (may contain other people's data)
+*.pcap
+*.pcapng
 __marimo__/
 
 # Streamlit
