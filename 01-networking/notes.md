@@ -17,5 +17,6 @@ Memory trick: Please Do Not Throw Sausage Pizza Away
 
 PDU Names : L1 bits, L2 frames , L3 packets , L4 segments or datagrams
 
-Layer 2 device : Switch
-Layer 3 device : Router
+Layer 2 device : Switch .
+
+Layer 3 device : Router .
