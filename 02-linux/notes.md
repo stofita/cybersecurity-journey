@@ -18,10 +18,31 @@ There are two kinds of paths:
 
 ## Commands learned so far
 
-- `echo`: prints the text after it, like `printf` in C.
-- `pwd`: Print Working Directory, shows where I am (the current location).
-- `cd`: changes the directory. Shortcuts:
-  - `cd .` current directory
-  - `cd ..` parent directory
-  - `cd ~` home directory
-  - `cd -` previous directory
+| Command | What it does | Example |
+|---------|--------------|---------|
+| `pwd` | Print Working Directory, shows where I am | `pwd` |
+| `cd` | Changes the directory | `cd testdir` |
+| `cd .` | Current directory | `cd .` |
+| `cd ..` | Parent directory | `cd ..` |
+| `cd ~` | Home directory | `cd ~` |
+| `cd -` | Previous directory | `cd -` |
+| `echo` | Prints the text after it, like `printf` in C | `echo "Hello"` |
+| `echo "text" > file` | Writes text to a file (overwrites it) | `echo "Hello" > file1.txt` |
+| `echo "text" >> file` | Appends text to a file | `echo "More" >> file1.txt` |
+| `mkdir` | Creates a directory | `mkdir testdir` |
+| `touch` | Creates an empty file, or updates the timestamp of an existing one | `touch file1.txt` |
+| `cp` | Copies a file | `cp file1.txt testdir/` |
+| `cp -r` | Copies a directory and its content (recursive) | `cp -r mydir mydir_copy` |
+| `mv` | Renames or moves a file or directory | `mv old.txt new.txt` |
+| `rm` | Removes files | `rm file1.txt` |
+| `rm -r` | Removes a directory and its content | `rm -r testdir` |
+| `rm -i` | Asks for confirmation before deleting | `rm -i file1.txt` |
+| `file` | Shows the type of a file's content | `file file1.txt` |
+| `file -i` | Shows the MIME type | `file -i file1.txt` |
+| `ls` | Lists files in the current directory | `ls` |
+| `ls -a` | Includes hidden files (names starting with `.`) | `ls -a` |
+| `ls -l` | Long format: permissions, owner, size, date | `ls -l` |
+| `ls -lh` | Long format with human-readable sizes | `ls -lh` |
+
+### Caution
+`rm -rf` deletes without asking, and there is no recycle bin. I use `rm -i` while learning.
