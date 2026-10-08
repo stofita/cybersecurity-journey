@@ -21,27 +21,27 @@ Layer 2 device : Switch .
 
 Layer 3 device : Router .
 
-# 1.2 Networking Devices
+## 1.2 Networking Devices
 
 A data center contains many types of network equipment. Each device has a specific job and a place on the network.
 
-## Router
+### Router
 - Connects **different networks** (e.g., a LAN to a WAN or the internet).
 - Works at **Layer 3** and forwards packets using **IP addresses**.
 
-## Switch
+### Switch
 - Connects devices **inside the same network** and forwards frames using **MAC addresses** (Layer 2).
 - Usually built in hardware (ASICs) with many ports.
 - Often supports **PoE (Power over Ethernet)** to power devices like IP phones and access points.
 - A **Layer 3 switch** adds routing functionality.
 
-## Firewall
+### Firewall
 - Filters traffic with rules.
 - **Traditional firewall:** filters by IP address, port, and protocol (Layers 3-4).
 - **NGFW (Next-Generation Firewall):** application-aware (Layer 7), can also include IPS, URL filtering, and user identification.
 - Many firewalls also include **VPN** features. The VPN is what encrypts traffic, not the firewall itself.
 
-## IDS and IPS
+### IDS and IPS
 | | IDS | IPS |
 |---|---|---|
 | Full name | Intrusion Detection System | Intrusion Prevention System |
@@ -50,15 +50,15 @@ A data center contains many types of network equipment. Each device has a specif
 
 Both look for attacks such as exploits.
 
-## Load Balancer
+### Load Balancer
 - Distributes traffic across **multiple servers** so no single server is overloaded.
 - Also provides **fault tolerance**: if one server fails, traffic goes to the others.
 
-## Proxy
+### Proxy
 - Sits **between the client and the server** and makes requests on the client's behalf.
 - Can filter content, cache data, authenticate users, and hide the client's IP address.
 
-## NAS vs SAN
+### NAS vs SAN
 | | NAS | SAN |
 |---|---|---|
 | Access level | **File-level** | **Block-level** |
@@ -66,7 +66,6 @@ Both look for attacks such as exploits.
 | Appears as | A shared folder on the network | A local disk attached to the server |
 | Network | Regular network | Dedicated storage network |
 
-## Wireless Devices
+### Wireless Devices
 - **Access Point (AP):** connects wireless clients to the wired network (Layer 2 bridging).
 - **Wireless LAN Controller (WLC):** centrally configures and manages many APs, which is easier than managing each one separately.
--
