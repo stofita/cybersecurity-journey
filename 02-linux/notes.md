@@ -16,33 +16,44 @@ There are two kinds of paths:
 - **Relative path:** does not start with `/`. It is read from the folder I'm in now. `./` means "the current folder" and is optional.
   Example: from `/home`, both `cd stofita` and `cd ./stofita` do the same thing.
 
-## Commands learned so far
+## Commands by task
 
-| Command | What it does | Example |
-|---------|--------------|---------|
-| `pwd` | Print Working Directory, shows where I am | `pwd` |
-| `cd` | Changes the directory | `cd testdir` |
-| `cd .` | Current directory | `cd .` |
-| `cd ..` | Parent directory | `cd ..` |
-| `cd ~` | Home directory | `cd ~` |
-| `cd -` | Previous directory | `cd -` |
-| `echo` | Prints the text after it, like `printf` in C | `echo "Hello"` |
-| `echo "text" > file` | Writes text to a file (overwrites it) | `echo "Hello" > file1.txt` |
-| `echo "text" >> file` | Appends text to a file | `echo "More" >> file1.txt` |
-| `mkdir` | Creates a directory | `mkdir testdir` |
-| `touch` | Creates an empty file, or updates the timestamp of an existing one | `touch file1.txt` |
-| `cp` | Copies a file | `cp file1.txt testdir/` |
-| `cp -r` | Copies a directory and its content (recursive) | `cp -r mydir mydir_copy` |
-| `mv` | Renames or moves a file or directory | `mv old.txt new.txt` |
-| `rm` | Removes files | `rm file1.txt` |
-| `rm -r` | Removes a directory and its content | `rm -r testdir` |
-| `rm -i` | Asks for confirmation before deleting | `rm -i file1.txt` |
-| `file` | Shows the type of a file's content | `file file1.txt` |
-| `file -i` | Shows the MIME type | `file -i file1.txt` |
-| `ls` | Lists files in the current directory | `ls` |
-| `ls -a` | Includes hidden files (names starting with `.`) | `ls -a` |
-| `ls -l` | Long format: permissions, owner, size, date | `ls -l` |
-| `ls -lh` | Long format with human-readable sizes | `ls -lh` |
+### Where am I? Moving around
+| Command | What it does |
+|---------|--------------|
+| `pwd` | Shows where I am |
+| `cd dir` | Changes directory |
+| `cd ..` / `cd ~` / `cd -` | Parent / home / previous directory |
+| `ls` | Lists files (`-a` hidden, `-l` details, `-lh` readable sizes) |
+
+### Creating and organizing
+| Command | What it does |
+|---------|--------------|
+| `mkdir dir` | Creates a directory |
+| `touch file` | Creates an empty file (or updates its timestamp) |
+| `cp file dir/` | Copies a file (`-r` for a directory) |
+| `mv old new` | Renames or moves |
+| `rm file` | Removes a file (`-r` directory, `-i` ask first) |
+
+### Reading files
+| Command | What it does |
+|---------|--------------|
+| `cat file` | Shows the content (`-n` adds line numbers) |
+| `head file` | First 10 lines (`-n 1` for just one) |
+| `tail file` | Last 10 lines (`-f` follows live, useful for logs) |
+| `less file` | Interactive reading (`/word` to search, `q` to quit) |
+
+### Writing and comparing
+| Command | What it does |
+|---------|--------------|
+| `echo "text" > file` | Writes text to a file (overwrites) |
+| `echo "text" >> file` | Appends text to a file |
+| `diff f1 f2` | Shows the lines that differ (`-r` for directories) |
+| `file f` | Shows the content type (`-i` MIME type) |
+
+## Mistakes I made / things to remember
+- `rm` alone doesn't delete directories, so I need `-r`.
+- `>` overwrites a file, while `>>` appends.
 
 ### Caution
 `rm -rf` deletes without asking, and there is no recycle bin. I use `rm -i` while learning.
