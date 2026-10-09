@@ -21,7 +21,7 @@ Layer 2 device : Switch .
 
 Layer 3 device : Router .
 
-## 1.2 Networking Devices
+## 1.2.1 Networking Devices
 
 A data center contains many types of network equipment. Each device has a specific job and a place on the network.
 
@@ -69,3 +69,31 @@ Both look for attacks such as exploits.
 ### Wireless Devices
 - **Access Point (AP):** connects wireless clients to the wired network (Layer 2 bridging).
 - **Wireless LAN Controller (WLC):** centrally configures and manages many APs, which is easier than managing each one separately.
+
+## 1.2.2 Networking Functions
+
+A network provides several key functions: access to important data, remote access, traffic management, and protocol support.
+
+## CDN (Content Delivery Network)
+- Uses **geographically distributed servers** that cache content closer to the user, so it loads faster.
+- Examples: Cloudflare, Akamai.
+- Function: **access to important data**.
+
+## VPN (Virtual Private Network)
+- Creates an **encrypted tunnel** across a public network (like the internet) so data stays private.
+- Function: **remote access** to a private network.
+
+## QoS (Quality of Service)
+- **Prioritizes** certain traffic (e.g., voice and video) over less sensitive traffic (e.g., downloads).
+- Manages **bandwidth, delay, and packet loss**.
+- Function: **traffic management**.
+
+## TTL (Time to Live)
+| | IP packet | DNS |
+|---|---|---|
+| Measured in | **Hops** (despite the name) | **Seconds** |
+| Meaning | Each router subtracts 1. At 0, the packet is dropped. | How long a record can stay cached before it must be looked up again. |
+| Purpose | Stops packets from circling forever in a **routing loop**. | Controls when cached DNS data is refreshed. |
+
+- When doing a DNS lookup, the TTL shown is in **seconds**, not hops.
+- Function: **protocol support**.
