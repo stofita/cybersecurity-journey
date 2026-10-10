@@ -51,9 +51,39 @@ There are two kinds of paths:
 | `diff f1 f2` | Shows the lines that differ (`-r` for directories) |
 | `file f` | Shows the content type (`-i` MIME type) |
 
+### History and terminal
+| Command | What it does |
+|---------|--------------|
+| `history` | Shows the command history (`-c` clears memory, `-d N` deletes entry N, `-w` writes it to the history file) |
+| `clear` | Clears the terminal screen |
+
+### Permissions and ownership
+| Command | What it does |
+|---------|--------------|
+| `chmod u+x file` | Changes permissions (`u` owner, `g` group, `o` others, `a` all, with `+` add, `-` remove, `=` set) |
+| `chmod 755 file` | Same with numbers: r=4, w=2, x=1, in the order owner, group, others |
+| `sudo chown user:group file` | Changes the owner and group of a file (only root can change the owner) |
+| `#!/bin/bash` | Shebang, the first line of a script. It tells the system which interpreter runs it. |
+
+### Users and groups
+| Command | What it does |
+|---------|--------------|
+| `sudo adduser name` | Creates a user, with a home folder and a password prompt (`useradd -m` is the low-level version) |
+| `sudo usermod -aG group name` | Adds a user to a group (`-a` append, `-G` group). Never use `-G` without `-a`. |
+| `sudo passwd -l name` | Locks an account (`-u` unlocks it) |
+| `sudo userdel -r name` | Deletes a user and their home folder |
+
 ## Mistakes I made / things to remember
 - `rm` alone doesn't delete directories, so I need `-r`.
 - `>` overwrites a file, while `>>` appends.
+-  `history` can contain passwords I typed on the command line, so never type secrets directly into commands.
+- `chmod 777` makes a file writable by everyone, and I don't use it.
+- Give `sudo` only to users who truly need it (least privilege).
 
 ### Caution
 `rm -rf` deletes without asking, and there is no recycle bin. I use `rm -i` while learning.
+
+## OverTheWire Bandit progress
+- Levels 0-5 completed (basic navigation, reading files, hidden files, file types).
+- Next: levels 6-10 (searching for files, text processing).
+- Biggest lesson so far: reading `man` pages first saves time.
