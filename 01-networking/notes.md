@@ -74,21 +74,21 @@ Both look for attacks such as exploits.
 
 A network provides several key functions: access to important data, remote access, traffic management, and protocol support.
 
-## CDN (Content Delivery Network)
+### CDN (Content Delivery Network)
 - Uses **geographically distributed servers** that cache content closer to the user, so it loads faster.
 - Examples: Cloudflare, Akamai.
 - Function: **access to important data**.
 
-## VPN (Virtual Private Network)
+### VPN (Virtual Private Network)
 - Creates an **encrypted tunnel** across a public network (like the internet) so data stays private.
 - Function: **remote access** to a private network.
 
-## QoS (Quality of Service)
+### QoS (Quality of Service)
 - **Prioritizes** certain traffic (e.g., voice and video) over less sensitive traffic (e.g., downloads).
 - Manages **bandwidth, delay, and packet loss**.
 - Function: **traffic management**.
 
-## TTL (Time to Live)
+### TTL (Time to Live)
 | | IP packet | DNS |
 |---|---|---|
 | Measured in | **Hops** (despite the name) | **Seconds** |
@@ -97,3 +97,36 @@ A network provides several key functions: access to important data, remote acces
 
 - When doing a DNS lookup, the TTL shown is in **seconds**, not hops.
 - Function: **protocol support**.
+
+## 2.3 Introduction to IP
+
+IP (Internet Protocol) works at **Layer 3**. It is like a **truck** that carries other protocols, such as **TCP**, **UDP**, and **ICMP**, as its payload.
+
+### Encapsulation
+Data sent over Ethernet is nested:
+- The **Ethernet frame** carries an **IP packet** as its payload.
+- The **IP packet** carries a **TCP segment** (or UDP datagram) as its payload.
+- The TCP segment carries the **application data** (e.g., HTTP).
+
+Ethernet Header → IP Header → TCP Header → HTTP data → Ethernet Trailer
+
+### IP address vs port
+- The **IP address** gets the packet to the right **device**.
+- The **port number** (used by TCP or UDP) gets the data to the right **application** on that device.
+
+### IPv4 sockets
+A connection is identified by:
+
+| | Server | Client |
+|---|---|---|
+| IP address | Server IP | Client IP |
+| Protocol | TCP or UDP | Same protocol |
+| Port number | Server application port | Client port |
+
+### Port ranges
+| Range | Used by |
+|---|---|
+| **0 - 1,023** | Servers (well-known ports, e.g., HTTP 80, HTTPS 443, DNS 53, SSH 22) |
+| **1,024 - 65,535** | Clients (ephemeral ports, chosen by the OS for each connection) |
+
+- This is a general rule, not always strict: servers can also use ports above 1,023 (e.g., 8080), and the exact client range depends on the operating system.
