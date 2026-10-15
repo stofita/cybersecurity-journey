@@ -130,3 +130,31 @@ A connection is identified by:
 | **1,024 - 65,535** | Clients (ephemeral ports, chosen by the OS for each connection) |
 
 - This is a general rule, not always strict: servers can also use ports above 1,023 (e.g., 8080), and the exact client range depends on the operating system.
+
+## 2.4 IPv4 Addressing
+
+### Basics
+- To communicate, every device needs its own **IP address**.
+- IPv4 works at **OSI Layer 3**.
+- An IPv4 address has **4 octets** (32 bits). Each octet is 8 bits, so its maximum value is **255**.
+
+### Subnet mask and default gateway
+- The **subnet mask** is used by a device to determine **which subnet it is on**, and whether a destination is local or not.
+- If the destination is outside the local subnet, the device sends the traffic to the **default gateway** (usually the router), which allows communication outside of the local subnet.
+
+### Special addresses
+- **Loopback address:** an address that points to **yourself** (127.0.0.1, within 127.0.0.0/8). Used for testing the local network stack.
+- **Reserved addresses:** set aside for **future use or testing** (e.g., **Class E**, 240.0.0.0 and above).
+- **VIP (Virtual IP address):** an IP address **not tied to one specific device or interface**. Often shared by multiple servers or devices (e.g., behind a load balancer, or for redundancy) or associated with virtual machines.
+
+### Getting an address
+- **DHCP (Dynamic Host Configuration Protocol):** automatically gives a device its IP address and other IP configuration (subnet mask, default gateway, DNS server).
+- **APIPA (Automatic Private IP Addressing):**
+  - Used when a device **cannot reach a DHCP server**.
+  - Address starts with **169.254.x.x**.
+  - Can only communicate with **local devices** on the same subnet.
+  - The device uses **ARP** to check that the address it picked isn't already in use.
+
+### NAT (Network Address Translation)
+- Translates a **private IP address** to a **public** one.
+- Needed because there are **more devices than available IPv4 addresses**.
