@@ -158,3 +158,34 @@ A connection is identified by:
 ### NAT (Network Address Translation)
 - Translates a **private IP address** to a **public** one.
 - Needed because there are **more devices than available IPv4 addresses**.
+
+### 2.4 Binary Math
+
+### How binary works
+- Each **bit** is either **1** (on / active) or **0** (off / inactive).
+- Each position has a value of 2ⁿ. A 1 means that value is **counted** in the total, and a 0 means it is **not**.
+- An **octet** (or **byte**) has **8 bits**:
+
+| Position | 2⁷ | 2⁶ | 2⁵ | 2⁴ | 2³ | 2² | 2¹ | 2⁰ |
+|---|---|---|---|---|---|---|---|---|
+| Value | 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+
+### Binary to decimal
+Add the values of the positions that are 1.
+
+Example: `00100010`
+- 2⁵ + 2¹ = 32 + 2 = **34**
+
+### Decimal to binary
+Example: **127**
+- 127 = 64 + 32 + 16 + 8 + 4 + 2 + 1
+- Binary: `01111111`
+
+### Bit vs byte
+- **1 bit** = a single 0 or 1.
+- **8 bits** = **1 byte** = **1 octet**.
+- Maximum value of one octet: `11111111` = **255** (2⁸ - 1).
+
+### More bits = more addresses
+- **n bits** give **2ⁿ possibilities**.
+- IPv4 uses 32 bits (4 octets), so it has 2³² (about 4.3 billion) possible addresses.
