@@ -73,6 +73,16 @@ There are two kinds of paths:
 | `sudo passwd -l name` | Locks an account (`-u` unlocks it) |
 | `sudo userdel -r name` | Deletes a user and their home folder |
 
+### Finding things and getting help
+| Command | What it does |
+|---------|--------------|
+| `find /home -name file.txt` | Searches a directory tree by name (`-type f` files, `-type d` directories, `-size +1M` by size) |
+| `find . -name "*.txt"` | Same, from the current folder, with a wildcard in quotes |
+| `help cd` | Documentation for a shell builtin (only works for builtins) |
+| `man ls` | Detailed manual for a command (`/word` to search, `q` to quit) |
+| `command --help` | Short help for most external commands |
+| `type name` | Shows how Bash interprets a name: alias, builtin, keyword, function, or file |
+
 ## Mistakes I made / things to remember
 - `rm` alone doesn't delete directories, so I need `-r`.
 - `>` overwrites a file, while `>>` appends.
