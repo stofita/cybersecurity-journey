@@ -1,4 +1,16 @@
-# Networking notes
+# Networking Notes
+
+## Contents
+- [1.1 The OSI Model](#11-the-osi-model)
+- [1.2.1 Networking Devices](#121-networking-devices)
+- [1.2.2 Networking Functions](#122-networking-functions)
+- [2.3 Introduction to IP](#23-introduction-to-ip)
+- [2.4 IPv4 Addressing](#24-ipv4-addressing)
+- [2.5 Binary Math](#25-binary-math)
+- [2.6 IPv4 Subnet Masks](#26-ipv4-subnet-masks)
+- [2.7 Classful Subnetting](#27-classful-subnetting)
+
+---
 
 ## 1.1 The OSI model
 A universal reference model with 7 layers.
@@ -189,3 +201,65 @@ Example: **127**
 ### More bits = more addresses
 - **n bits** give **2ⁿ possibilities**.
 - IPv4 uses 32 bits (4 octets), so it has 2³² (about 4.3 billion) possible addresses.
+
+## 2.6 IPv4 Subnet Masks
+
+### CIDR (Classless Inter-Domain Routing)
+- A subnet mask can be written in **decimal** or in **CIDR notation**.
+- The CIDR number is the **number of 1 bits** in the mask (the network bits).
+
+| Decimal mask | CIDR |
+|---|---|
+| 255.0.0.0 | /8 |
+| 255.255.0.0 | /16 |
+| 255.255.255.0 | /24 |
+
+- Some operating systems expect the decimal mask, others expect CIDR notation.
+
+### Network bits and host bits
+`11111111.11111111.11111111.00000000` = **255.255.255.0**
+- The 1s are the **network** part (24 bits).
+- The 0s are the **host** part (8 bits).
+- To get the CIDR notation, **count the 1s**: here **/24**.
+
+### Binary to decimal
+`11111111.11110000.00000000.00000000`
+- 11111111 = 255, 11110000 = 128 + 64 + 32 + 16 = 240
+- Mask: **255.240.0.0** (/12)
+
+### CIDR to decimal
+You can also go the other way. Example: **/26**
+- 26 ones: `11111111.11111111.11111111.11000000`
+- 11000000 = 128 + 64 = 192
+- Mask: **255.255.255.192**
+
+You must know how to convert between binary and decimal.
+
+## 2.7 Classful Subnetting
+
+- Classful subnetting has **not been used since 1993**, when CIDR replaced it.
+- Using CIDR as a reference, each class has a default mask:
+
+| Class | Default mask | First bits | First octet range |
+|---|---|---|---|
+| **A** | /8 | `0xxx` | 0 - 127 |
+| **B** | /16 | `10xx` | 128 - 191 |
+| **C** | /24 | `110x` | 192 - 223 |
+| **D** (multicast) | - | `1110` | 224 - 239 |
+| **E** (reserved) | - | `1111` | 240 - 255 |
+
+- **Method to identify the class:** look at the **first octet** and compare it to the ranges.
+
+### Rules in IPv4 subnetting
+- **Network address:** all **host bits are 0**.
+- **Broadcast address:** the **last** IP address of the subnet, all **host bits are 1**.
+- **First usable host:** one number **higher** than the network address.
+- **Last usable host:** one number **lower** than the broadcast address.
+
+### Example: 10.74.222.11
+- First octet is 10, so it is **Class A**. Network part: `10`, host part: `74.222.11`.
+- Subnet mask: **255.0.0.0**
+- Network address: **10.0.0.0**
+- First usable host: **10.0.0.1**
+- Broadcast address: **10.255.255.255**
+- Last usable host: **10.255.255.254**
