@@ -9,7 +9,7 @@
 - [2.5 Binary Math](#25-binary-math)
 - [2.6 IPv4 Subnet Masks](#26-ipv4-subnet-masks)
 - [2.7 Classful Subnetting](#27-classful-subnetting)
-
+- [2.8 Calculating IPv4 Subnets and Hosts](#28-calculating-ipv4-subnets-and-hosts)
 ---
 
 ## 1.1 The OSI model
@@ -263,3 +263,38 @@ You must know how to convert between binary and decimal.
 - First usable host: **10.0.0.1**
 - Broadcast address: **10.255.255.255**
 - Last usable host: **10.255.255.254**
+
+## 2.8 Calculating IPv4 Subnets and Hosts
+
+### Why subnet?
+- One large network is inefficient: more broadcast traffic, wasted addresses, and harder to manage. **Subnetting** splits it into smaller networks.
+- **VLSM (Variable Length Subnet Masking)** lets admins define their own masks, so each subnet can have a different size and fewer addresses are wasted.
+- A subnet is like **borrowing bits** from the host portion.
+
+### The three parts of an address
+| Part | Meaning |
+|---|---|
+| **Network bits** | Default for the class (e.g., Class A = 8) |
+| **Subnet bits** | Bits **borrowed** from the host portion |
+| **Host bits** | The bits that remain for hosts |
+
+Network + subnet + host = **32 bits**.
+
+### Formulas
+- **Number of subnets** = 2^(subnet bits)
+- **Hosts per subnet** = 2^(host bits) - 2
+  - The 2 removed are the **network address** and the **broadcast address**.
+
+### Example: 10.1.1.0/24
+- Class A, so network bits = **8**
+- /24 means 24 mask bits, so subnet bits = 24 - 8 = **16**
+- Host bits = 32 - 24 = **8**
+
+`11111111.11111111.11111111.00000000` = 255.255.255.0
+
+| Network | Subnet | Host |
+|---|---|---|
+| 8 bits | 16 bits | 8 bits |
+
+- Total subnets = 2¹⁶ = **65,536**
+- Hosts per subnet = 2⁸ - 2 = **254**
