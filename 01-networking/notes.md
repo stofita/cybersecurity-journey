@@ -10,6 +10,7 @@
 - [2.6 IPv4 Subnet Masks](#26-ipv4-subnet-masks)
 - [2.7 Classful Subnetting](#27-classful-subnetting)
 - [2.8 Calculating IPv4 Subnets and Hosts](#28-calculating-ipv4-subnets-and-hosts)
+- [2.9 Magic Number Subnetting](#29-magic-number-subnetting)
 ---
 
 ## 1.1 The OSI model
@@ -298,3 +299,65 @@ Network + subnet + host = **32 bits**.
 
 - Total subnets = 2¹⁶ = **65,536**
 - Hosts per subnet = 2⁸ - 2 = **254**
+
+## 2.9 Magic Number Subnetting
+
+### Why
+- Calculating a subnet usually means converting decimal to binary, which takes a lot of time.
+- The **magic number** method is a faster shortcut. A chart helps to memorize the mask values.
+
+### CIDR to decimal chart
+| Octet 2 | Octet 3 | Octet 4 | Decimal |
+|---|---|---|---|
+| /9 | /17 | /25 | 128 |
+| /10 | /18 | /26 | 192 |
+| /11 | /19 | /27 | 224 |
+| /12 | /20 | /28 | 240 |
+| /13 | /21 | /29 | 248 |
+| /14 | /22 | /30 | 252 |
+| /15 | /23 | /31 | 254 |
+| /16 | /24 | /32 | 255 |
+
+- Normal subnets don't use **/31** and **/32** because they don't leave room for hosts (/31 is a special case for point-to-point links).
+
+### Method
+1. Have the subnet mask in **decimal**.
+2. Identify the **interesting octet**: the octet whose mask value is not 255 or 0.
+3. Calculate the **magic number** = **256 - interesting octet**. It is the size of each subnet block.
+4. Find the **host range**: blocks start at multiples of the magic number (0, 16, 32, ...). Find the block that contains the IP's value in the interesting octet.
+5. Identify the **subnet ID** (network address) and the **broadcast address**.
+
+### Rules for each octet
+| Mask value | Subnet ID | Broadcast |
+|---|---|---|
+| **255** | Copy the IP octet | Same as subnet ID |
+| **0** | Write **0** | Write **255** |
+| Anything else (interesting octet) | Start of the block | Subnet ID + magic number - 1 |
+
+- **First host** = subnet ID + 1
+- **Last host** = broadcast - 1
+
+### Example 1: 165.245.77.14, mask 255.255.240.0
+| | Octet 1 | Octet 2 | Octet 3 | Octet 4 |
+|---|---|---|---|---|
+| Mask | 255 | 255 | 240 | 0 |
+| IP | 165 | 245 | 77 | 14 |
+| Subnet ID | 165 | 245 | 64 | 0 |
+| Broadcast | 165 | 245 | 79 | 255 |
+
+- Interesting octet: 3rd (240)
+- Magic number: 256 - 240 = **16**
+- Blocks: 0, 16, 32, 48, 64, 80... The value 77 is between 64 and 79, so the block starts at **64**.
+- Subnet ID: **165.245.64.0**
+- Broadcast: 64 + 16 - 1 = 79, so **165.245.79.255**
+- First host: **165.245.64.1**
+- Last host: **165.245.79.254**
+
+### Example 2 (using the chart): 172.16.242.133/27
+- /27 is in the **octet 4** column, so the mask is **255.255.255.224** and the interesting octet is the 4th.
+- Magic number: 256 - 224 = **32**
+- Blocks: 0, 32, 64, 96, 128, 160... The value 133 is in the block starting at **128**.
+- Subnet ID: **172.16.242.128**
+- Broadcast: 128 + 32 - 1 = 159, so **172.16.242.159**
+- First host: 128 + 1 = **172.16.242.129**
+- Last host: 159 - 1 = **172.16.242.158**
