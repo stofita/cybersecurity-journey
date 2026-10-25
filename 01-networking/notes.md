@@ -11,6 +11,8 @@
 - [2.7 Classful Subnetting](#27-classful-subnetting)
 - [2.8 Calculating IPv4 Subnets and Hosts](#28-calculating-ipv4-subnets-and-hosts)
 - [2.9 Magic Number Subnetting](#29-magic-number-subnetting)
+-  [2.10 Network Communication](#210-network-communication)
+- [2.11 Other Useful Protocols](#211-other-useful-protocols)
 ---
 
 ## 1.1 The OSI model
@@ -361,3 +363,50 @@ Network + subnet + host = **32 bits**.
 - Broadcast: 128 + 32 - 1 = 159, so **172.16.242.159**
 - First host: 128 + 1 = **172.16.242.129**
 - Last host: 159 - 1 = **172.16.242.158**
+
+## 2.10 Network Communication
+
+How data is sent from one station to others:
+
+| Type | Direction | Description |
+|---|---|---|
+| **Unicast** | One to one | Transfers data from station A to station B |
+| **Multicast** | One to many (a group) | Sends from one station to a group of stations that joined, simultaneously |
+| **Anycast** | One to the nearest of many | Several devices share the same IP address, and the data goes to the closest one |
+| **Broadcast** | One to all | Sends data to everyone on the local network at once |
+
+- Multicast addresses are **Class D** (224.0.0.0 - 239.255.255.255).
+- IPv6 does not have broadcast.
+
+## 2.11 Other Useful Protocols
+
+### ICMP (Internet Control Message Protocol)
+- Used by network devices to send **error messages and diagnostic information**.
+- Examples: **ping** (echo request/reply), **traceroute**, "destination unreachable".
+- It is carried inside IP and does not use ports.
+
+### GRE (Generic Routing Encapsulation)
+- A **tunneling** protocol: it encapsulates one packet inside another to send it across a network.
+- It does **not encrypt** the data. It is often combined with IPsec.
+
+### VPN (Virtual Private Network)
+- Encrypts data across a public network.
+- **Site-to-site:** connects two whole networks (e.g., two offices).
+- Remote access (client-to-site) connects a single user to a network.
+
+### IPsec
+- Used to **encrypt and secure** traffic at the network layer (Layer 3).
+- Needs **IKE (Internet Key Exchange)** to set up the connection:
+  - **Phase I:** the two sides authenticate and create a secure channel.
+  - **Phase II:** they negotiate the IPsec parameters used to protect the data.
+
+| Protocol | What it does |
+|---|---|
+| **AH** (Authentication Header) | **Hashing**: verifies who sent the data and that it wasn't changed. No encryption. |
+| **ESP** (Encapsulating Security Payload) | **Encryption** + authentication |
+
+### Modes
+- **Transport mode:** the original IP header is **not encrypted**; only the data is protected.
+  - IP Header → IPsec Header → Data → IPsec Trailer
+- **Tunnel mode:** the **whole original packet** is protected inside a new packet. Commonly used for site-to-site VPNs.
+  - New IP Header → IPsec Header → Original IP Header → Data → IPsec Trailer
