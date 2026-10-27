@@ -13,6 +13,7 @@
 - [2.9 Magic Number Subnetting](#29-magic-number-subnetting)
 -  [2.10 Network Communication](#210-network-communication)
 - [2.11 Other Useful Protocols](#211-other-useful-protocols)
+- [2.12 Common Ports](#212-common-ports)
 ---
 
 ## 1.1 The OSI model
@@ -410,3 +411,40 @@ How data is sent from one station to others:
   - IP Header → IPsec Header → Data → IPsec Trailer
 - **Tunnel mode:** the **whole original packet** is protected inside a new packet. Commonly used for site-to-site VPNs.
   - New IP Header → IPsec Header → Original IP Header → Data → IPsec Trailer
+
+## 2.12 Common ports
+
+### Learn first
+| Port | Protocol | What it's for |
+|------|----------|---------------|
+| 22 | SSH | Secure remote login |
+| 53 | DNS | Turns names into IP addresses |
+| 80 | HTTP | Websites, unencrypted |
+| 443 | HTTPS | Websites, encrypted |
+| 21 | FTP | File transfer, unencrypted |
+| 23 | Telnet | Remote login, unencrypted |
+| 25 | SMTP | Sending email |
+| 3389 | RDP | Windows remote desktop |
+| 445 | SMB | Windows file sharing |
+
+### Insecure vs secure
+| Insecure | Secure replacement |
+|----------|--------------------|
+| Telnet (23) | SSH (22) |
+| HTTP (80) | HTTPS (443) |
+| FTP (21) | SFTP (runs over SSH, port 22) |
+| LDAP (389) | LDAPS (636) |
+
+Insecure protocols send passwords in plain text, which is why attackers look for them.
+
+### Port ranges
+- 0 to 1023: well-known ports (system services)
+- 1024 to 49151: registered ports
+- 49152 to 65535: dynamic ports (used temporarily by my own connections)
+
+### Look up a port on my system
+This ligns up with my studies for Linux : 
+`grep -w ssh /etc/services` shows the port number for a service.
+
+### Learn later
+67/68 DHCP, 123 NTP, 161 SNMP, 389 LDAP, 110/143 POP3/IMAP, 3306 MySQL, 5432 PostgreSQL.
