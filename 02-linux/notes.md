@@ -83,6 +83,15 @@ There are two kinds of paths:
 | `command --help` | Short help for most external commands |
 | `type name` | Shows how Bash interprets a name: alias, builtin, keyword, function, or file |
 
+### Searching and chaining
+| Command | What it does |
+|---------|--------------|
+| `find / -type f -size SIZEc -user USER -group GROUP` | Finds files by type, size in bytes (`c`), owner, and group (use `.` instead of `/` to search only here) |
+| `command 2>/dev/null` | Hides error messages (stderr), such as "Permission denied" |
+| `cmd1 \| cmd2` | Pipe: sends the output of one command into the next |
+| `grep "word" file` | Prints lines containing a word (`-v` inverts, `-c` counts, `-i` ignores case) |
+| `sort file \| uniq -c` | Sorts, then counts repeated lines (`uniq` needs sorted input) |
+
 ## Mistakes I made / things to remember
 - `rm` alone doesn't delete directories, so I need `-r`.
 - `>` overwrites a file, while `>>` appends.
