@@ -14,6 +14,7 @@
 -  [2.10 Network Communication](#210-network-communication)
 - [2.11 Other Useful Protocols](#211-other-useful-protocols)
 - [2.12 Common Ports](#212-common-ports)
+- [2.13 DHCP](#213-dhcp)
 ---
 
 ## 1.1 The OSI model
@@ -448,3 +449,23 @@ This ligns up with my studies for Linux :
 
 ### Learn later
 67/68 DHCP, 123 NTP, 161 SNMP, 389 LDAP, 110/143 POP3/IMAP, 3306 MySQL, 5432 PostgreSQL.
+
+## 2.13 DHCP
+
+### Why DHCP
+- IPv4 address configuration used to be **manual**.
+- **DHCP (Dynamic Host Configuration Protocol)** gives the configuration **automatically**: IP address, subnet mask, default gateway, DNS server, and a **lease time**.
+- It uses **UDP ports 67 (server) and 68 (client)**.
+
+### DORA process
+| Step | Meaning |
+|---|---|
+| **D**iscover | The client broadcasts to find a DHCP server |
+| **O**ffer | A server offers an IP address and configuration |
+| **R**equest | The client requests the offered address |
+| **A**cknowledge | The server confirms and the client can use the address |
+
+### DHCP relay (helper)
+- DHCP has a **limited communication range**: broadcasts don't cross routers.
+- A **DHCP relay (helper)** converts the client's **broadcast** into a **unicast** and sends it to the DHCP server on another network.
+- Benefit: it minimizes the number of DHCP servers needed (one server can serve many subnets).
